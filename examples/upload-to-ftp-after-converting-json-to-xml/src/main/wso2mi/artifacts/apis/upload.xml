@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/upload" name="upload" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" uri-template="/">
+        <inSequence>
+            <datamapper config="resources:datamapper/json2xml/json2xml.dmc"
+                inputSchema="resources:datamapper/json2xml/json2xml_inputSchema.json"
+                outputSchema="resources:datamapper/json2xml/json2xml_outputSchema.json" />
+            <file.write configKey="FTPConn">
+                <filePath>/upload/miExample.xml</filePath>
+                <contentOrExpression>{${xpath(&quot;$body/text()&quot;)}}</contentOrExpression>
+                <encoding>UTF-8</encoding>
+                <mimeType>application/xml</mimeType>
+                <compress>false</compress>
+                <writeMode>Overwrite</writeMode>
+                <enableStreaming>false</enableStreaming>
+                <appendNewLine>false</appendNewLine>
+                <enableLock>false</enableLock>
+                <includeResultTo>Message Body</includeResultTo>
+                <updateLastModified>true</updateLastModified>
+                <maxRetries>0</maxRetries>
+                <retryDelay>0</retryDelay>
+            </file.write>
+
+
+
+
+
+
+
+        <respond />
+        </inSequence>
+        <faultSequence>
+        </faultSequence>
+    </resource>
+</api>

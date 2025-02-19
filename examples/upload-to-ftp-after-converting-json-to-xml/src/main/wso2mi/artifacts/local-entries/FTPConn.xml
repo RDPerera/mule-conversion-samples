@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<localEntry key="FTPConn" xmlns="http://ws.apache.org/ns/synapse">
+  <file.init>
+    <connectionType>FTP</connectionType>
+    <host>0.0.0.0</host>
+    <port>2121</port>
+    <username>user</username>
+    <password>password</password>
+    <encodePassword>false</encodePassword>
+    <userDirIsRoot>true</userDirIsRoot>
+    <isPassive>true</isPassive>
+    <ftpConnectionTimeout>100000</ftpConnectionTimeout>
+    <retryCount>5</retryCount>
+    <ftpSocketTimeout>150000</ftpSocketTimeout>
+    <fileLockScheme>Local</fileLockScheme>
+    <name>FTPConn</name>
+  </file.init>
+</localEntry>

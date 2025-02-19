@@ -1,37 +1,32 @@
 # Upload to FTP after converting JSON to XML
 
-This example application illustrates the concept of data-mapping to convert JSON data to XML. It also shows you how to 
-configure and use the [File connector](https://store.wso2.com/store/assets/esbconnector/details/5d6de1a4-1fa7-434e-863f-95c8533d3df2) to upload a file to a FTP server.
+This example application illustrates the concept of data mapping to convert JSON data to XML. It also shows you how to configure and use the [File connector](https://mi.docs.wso2.com/en/latest/reference/connectors/file-connector/file-connector-overview/) to upload a file to an FTP server.
 
 ### Assumptions ###
 
-This document assumes that you are familiar with WSO2 EI and the [Integration Studio interface](https://ei.docs.wso2.com/en/latest/micro-integrator/develop/WSO2-Integration-Studio/), WSO2 EI’s graphical developer tool. To increase your familiarity with Integration Studio, consider completing one or more [WSO2 EI Tutorials](https://ei.docs.wso2.com/en/latest/micro-integrator/use-cases/integration-use-cases/).
+This document assumes that you are familiar with WSO2 MI and the [WSO2 MI VS Code Extension](https://mi.docs.wso2.com/en/latest/develop/mi-for-vscode/install-wso2-mi-for-vscode/). To increase your familiarity with WSO2 MI, consider completing one or more [WSO2 MI Tutorials](https://mi.docs.wso2.com/en/latest/learn/learn-overview/).
 
 ### Example Use Case
-In this example JSON data is sent to the application and then converted to the XML format using the messageType property. Then the message payload is uploaded to the FTP folder.
+In this example, JSON data is sent to the application and then converted to XML format using the DataMapper. The message payload is then uploaded to the FTP folder.
 
 <img width="60%" src="../../resources/images/upload-to-ftp-after-converting-json-to-xml-use-case.png">
 
 ### Set Up and Run the Example
 
-1. Start WSO2 Integration Studio ([Installing WSO2 Integration Studio](https://ei.docs.wso2.com/en/latest/micro-integrator/develop/installing-WSO2-Integration-Studio/)).
+1. Install WSO2 Micro Integrator by following the [WSO2 MI Installation Guide](https://mi.docs.wso2.com/en/latest/develop/mi-for-vscode/install-wso2-mi-for-vscode/).
 
-2. In your menu in Studio, click the **File** menu. In the File menu select the **Import...** item.
+2. Open the MI-VS Code extension and click "Open MI Project".
+<img width="60%" src="../../resources/images/open-mi-project.png">
 
-3. In the Import window select the **Existing WSO2 Projects into workspace** under **WSO2** folder.
+3. Browse to the file path of the downloaded sample from this GitHub project (`integration-studio-examples/migration/mule/upload-to-ftp-after-converting-json-to-xml`) and click **Open MI Project**.
 
-4. Browse and select the file path to the downloaded sample of this Github project (``integration-studio-examples/migration/mule/upload-to-ftp-after-converting-json-to-xml``) and click **Finish**.
+4. Go to **Connections -> FTPConn** and configure the FTP connection parameters.
+ <img width="60%" src="../../resources/images/file-connector-ftp-configurations.png">
 
-5. Lets add the file connector into the workspace. Right click on the **UploadToFtpAfterConvertingJsonToXml** and select **Add or Remove Connector/Module**. Keep the **Add connector/module** option selected and click **Next>**. Search for 'file' using the search bar and click the download button located at the bottom right corner of the file connector. Click **Finish**.
+5. Go to **API -> upload** and run the API by clicking on the **run** icon.
+ <img width="60%" src="../../resources/images/upload-to-ftp-after-converting-json-to-xml.png">
 
-6. Open the **UploadToFtpAfterConvertingJsonToXml.xml** under **upload-to-ftp-after-converting-json-to-xml/UploadToFtpAfterConvertingJsonToXml/src/main/synapse-config/api/** directory. Configure destination property accordingly.<br>
-    <img width="60%" src="../../resources/images/upload-to-ftp-after-converting-json-to-xml.png">
-
-7. Run the sample by right click on the **UploadToFtpAfterConvertingJsonToXmlCompositeApplication** under the main **upload-to-ftp-after-converting-json-to-xml** project and selecting **Export Project Artifacts and Run**.
-
-8. Open HTTP Client in Integration Studio. Follow [HTTP Client Guidelines](../../../docs/common/adding-http-client-to-integration-studio.md) to open HTTP Client if the window is not visible in the interface.
-
-9. Make a POST request to *http://localhost:8290/upload* with following JSON message body, and setting the `Content-Type` header to `application/json`:
+6. Make a POST request to *http://localhost:8290/upload* with the following JSON message body, setting the `Content-Type` header to `application/json`:
     ```json
     {
     	"employees": {
@@ -70,11 +65,9 @@ In this example JSON data is sent to the application and then converted to the X
     }
     ```
 
-10. Verify that the file `miExample.xml` was uploaded to the `upload` folder on your FTP server.
-
-
+7. Verify that the file `miExample.xml` was uploaded to the `upload` folder on your FTP server.
 
 ### Go Further
 
-* Learn more about [file connector](https://docs.wso2.com/display/ESBCONNECTORS/Working+with+the+File+Connector#WorkingwiththeFileConnector-append).
-* Read more on [WSO2 connectors](https://docs.wso2.com/display/ESBCONNECTORS/WSO2+ESB+Connectors+Documentation)
+* Learn more about [data mapping](https://mi.docs.wso2.com/en/latest/reference/mediators/data-mapper-mediator/).
+* Learn more about the [file connector](https://mi.docs.wso2.com/en/latest/reference/connectors/file-connector/file-connector-example/).
